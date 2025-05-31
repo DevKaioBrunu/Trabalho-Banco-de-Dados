@@ -1,25 +1,30 @@
-import dao.AlunoDAO;
-import model.Aluno;
-
-import java.time.LocalDate;
 import java.util.Scanner;
 
-public class Main {
+public class Main {klaio
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        AlunoDAO alunoDAO = new AlunoDAO();
+        Scanner sc = new Scanner(System.in);
+        int opcao;
 
-        System.out.println("Sistema da Biblioteca - Cadastro de Aluno");
-        System.out.print("Nome: ");
-        String nome = scanner.nextLine();
+        do {
+            System.out.println("\n--- Sistema Biblioteca ---");
+            System.out.println("1. Cadastrar Aluno");
+            System.out.println("2. Cadastrar Livro");
+            System.out.println("3. Registrar Empréstimo");
+            System.out.println("0. Sair");
+            System.out.print("Escolha uma opção: ");
+            opcao = sc.nextInt();
 
-        System.out.print("Matrícula: ");
-        String matricula = scanner.nextLine();
-
-        System.out.print("Data de Nascimento (AAAA-MM-DD): ");
-        LocalDate nascimento = LocalDate.parse(scanner.nextLine());
-
-        Aluno aluno = new Aluno(nome, matricula, nascimento);
-        alunoDAO.cadastrar(aluno);
+            switch (opcao) {
+                case 1:
+                    System.out.println("Cadastrar Aluno - Em construção");
+                    break;
+                case 2:
+                    System.out.println("Cadastrar Livro - Em construção");
+                    break;
+                case 3:
+                    System.out.println("Registrar Empréstimo - Em construção");
+                    break;
+            }
+        } while (opcao != 0);
     }
 }
