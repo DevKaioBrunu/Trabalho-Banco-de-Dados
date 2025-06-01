@@ -1,0 +1,51 @@
+# Arquivos compilados Java
+*.class
+target/
+bin/
+out/
+
+# Arquivos de pacotes
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Logs
+logs/
+*.log
+
+# Arquivos de configuração IDE
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+.classpath
+.project
+.settings/
+
+# Diretórios Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# Arquivos Docker/Docker Compose
+.env
+
+# Arquivos de dados gerados pelo MySQL
+mysql-data/
+
+# Outros arquivos e diretórios temporários
+temp/
+tmp/
+.DS_Store
+Thumbs.db

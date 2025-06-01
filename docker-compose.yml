@@ -1,0 +1,55 @@
+services:
+  # Serviço do aplicativo Java
+  app:
+    stdin_open: true  # equivalente a -i
+    tty: true         # equivalente a -t
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_PORT=3306
+      - MYSQL_DATABASE=biblioteca
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root_password
+      - CLASSPATH=/app/lib/*:/app/target/*
+    volumes:
+      # Mapeamento do código-fonte local para o contêiner
+      - ./src:/app/src
+      # Mapeamento do arquivo Main.java para o contêiner
+      - ./Main.java:/app/Main.java
+      # Mapeamento para arquivos compilados
+      - ./target:/app/target
+      # Mapeamento para logs
+      - ./logs:/app/logs
+    networks:
+      - biblioteca-network
+    restart: unless-stopped
+
+  # Serviço do banco de dados MySQL
+  db:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=biblioteca
+      - MYSQL_ROOT_PASSWORD=root_password
+    volumes:
+      # Persistência dos dados do MySQL
+      - mysql-data:/var/lib/mysql
+      # Scripts SQL para inicialização (tabelas, dados iniciais)
+      - ./sql-scripts:/docker-entrypoint-initdb.d
+    networks:
+      - biblioteca-network
+    restart: unless-stopped
+
+networks:
+  biblioteca-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
